@@ -1,0 +1,8 @@
+# MyBatis 开启二级缓存的MyBatis配置，默认是关闭二级缓存的
+#mybatis:
+#  configuration:
+#    cache-enabled: true
+#MyBatis 设置以及缓存的级别
+#mybatis:
+#  configuration:
+#    local-cache-scope: session
