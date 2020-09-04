@@ -36,6 +36,10 @@ public class Tb2 {
     * 成绩
     */
     private String score;
+    /**
+     * 测试字段
+     */
+    private String testFiled;
 
 
 }

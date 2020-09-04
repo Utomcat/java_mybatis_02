@@ -53,8 +53,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into test.tb2(name, course, score)
-        values (#{name}, #{course}, #{score})
+        insert into test.tb2(name, course, score, test_filed)
+        values (#{name}, #{course}, #{score}, #{testFiled})
     </insert>
 
     <!--通过主键修改数据-->

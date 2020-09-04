@@ -50,7 +50,10 @@ public class Tb2ServiceImpl implements Tb2Service {
      */
     @Override
     public Tb2 insert(Tb2 tb2) {
-        tb2Dao.insert(tb2);
+        int insert = tb2Dao.insert(tb2);
+        if (insert <= 0 ){
+            return null;
+        }
         return tb2;
     }
 
@@ -62,7 +65,7 @@ public class Tb2ServiceImpl implements Tb2Service {
      */
     @Override
     public Tb2 update(Tb2 tb2) {
-        tb2Dao.update(tb2);
+        int update = tb2Dao.update(tb2);
         return queryById(tb2.getId());
     }
 
