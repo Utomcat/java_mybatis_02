@@ -170,10 +170,10 @@ public class AnnotationScanner {
 > `AnnApplicationContext.java`
 ```java
 
-import com.ranyk.mybatis_ch02.annotation.util.AnnotationScanner;
-import com.ranyk.mybatis_ch02.annotation.annotation03.annotationDefinition.Factory;
-import com.ranyk.mybatis_ch02.annotation.annotation03.annotationProcessor.BeanFactory;
-import com.ranyk.mybatis_ch02.exception.MyException;
+import com.ranyk.mybatis.annotation.util.AnnotationScanner;
+import com.ranyk.mybatis.annotation.annotation03.annotationDefinition.Factory;
+import com.ranyk.mybatis.annotation.annotation03.annotationProcessor.BeanFactory;
+import com.ranyk.mybatis.exception.MyException;
 
 import java.io.IOException;
 import java.util.*;
