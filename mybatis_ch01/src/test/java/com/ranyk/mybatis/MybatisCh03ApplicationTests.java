@@ -31,7 +31,7 @@ public class MybatisCh03ApplicationTests {
      * 结果 实体对象为 null 且对实体对象进行的属性值的获取会出现 空指针
      */
     @Test
-    public void method0(){
+    public void method0() {
         Tb2 tb2 = tbService.queryById("8");
         System.out.println(tb2.toString());
     }
@@ -80,16 +80,16 @@ public class MybatisCh03ApplicationTests {
         int a = 1;
         for (int i = 0; i < 100; i++) {
 
-            if (a > 10){
+            if (a > 10) {
                 a = 1;
             }
 
             try {
                 Tb2 tb2 = tbService.queryById(String.valueOf(a));
-                log.info( "查询出来的结果为: " + tb2.toString());
-            }catch (Exception e){
-                log.error( "错误信息为: " + e.getMessage() + "\r\n 报错行为: " + e.getStackTrace()[0].getLineNumber());
-            }finally {
+                log.info("查询出来的结果为: " + tb2.toString());
+            } catch (Exception e) {
+                log.error("错误信息为: " + e.getMessage() + "\r\n 报错行为: " + e.getStackTrace()[0].getLineNumber());
+            } finally {
                 log.info("这是第 " + i + " 次的执行结果");
                 a++;
             }
@@ -99,31 +99,37 @@ public class MybatisCh03ApplicationTests {
 
     @Test
     @Transactional(rollbackFor = Exception.class)
-    public void method4(){
+    public void method4() {
 
         Tb2 tb2 = new Tb2();
         tb2.setScore("50");
-        StringBuilder sbName = new StringBuilder("姓名");
-        StringBuilder sbCourse = new StringBuilder("课程");
+        for (int k = 0; k < 1; k++) {
 
-        for (int i = 0; i < 100; i++) {
-            try {
-                tb2.setName(sbName.append(i).toString());
-                tb2.setCourse(sbCourse.append(i).toString());
-                if (i%3 == 0){
-                    tb2.setTestFiled("测试字段");
-                }else {
-                    tb2.setTestFiled(String.valueOf(i));
+            for (int i = 0; i < 100; i++) {
+                StringBuilder sbName = new StringBuilder("姓名");
+                StringBuilder sbCourse = new StringBuilder("课程");
+                try {
+                    tb2.setName(sbName.append(i).toString());
+                    tb2.setCourse(sbCourse.append(i).toString());
+                    if (i % 3 == 0) {
+                        tb2.setTestFiled("测试字段");
+                    } else {
+                        tb2.setTestFiled(String.valueOf(i));
+                    }
+                    Tb2 insert = tbService.insert(tb2);
+                    if (null != insert) {
+                        log.info("增加成功!");
+                    } else {
+                        log.info("增加失败");
+                    }
+                } catch (Exception e) {
+                    log.info("错误信息为: " + e.getMessage() + "\r\n 错误行为: " + e.getStackTrace()[0].getLineNumber());
                 }
-                Tb2 insert = tbService.insert(tb2);
-                if (null != insert){
-                    log.info("增加成功!");
-                }else {
-                    log.info("增加失败");
-                }
-            }catch (Exception e){
-                log.info("错误信息为: " + e.getMessage() + "\r\n 错误行为: " + e.getStackTrace()[0].getLineNumber());
             }
+            tb2.setId(String.valueOf(1));
+            tb2.setTestFiled(String.valueOf(1));
+            Tb2 update = tbService.update(tb2);
+            System.out.println("update = " + update);
         }
     }
 

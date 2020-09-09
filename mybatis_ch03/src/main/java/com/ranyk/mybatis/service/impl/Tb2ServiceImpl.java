@@ -1,7 +1,7 @@
 package com.ranyk.mybatis.service.impl;
 
-import com.ranyk.mybatis.entity.Tb2;
 import com.ranyk.mybatis.dao.Tb2Dao;
+import com.ranyk.mybatis.entity.Tb2;
 import com.ranyk.mybatis.service.Tb2Service;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class Tb2ServiceImpl implements Tb2Service {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -51,7 +51,7 @@ public class Tb2ServiceImpl implements Tb2Service {
     @Override
     public Tb2 insert(Tb2 tb2) {
         int insert = tb2Dao.insert(tb2);
-        if (insert <= 0 ){
+        if (insert <= 0) {
             return null;
         }
         return tb2;
@@ -66,6 +66,11 @@ public class Tb2ServiceImpl implements Tb2Service {
     @Override
     public Tb2 update(Tb2 tb2) {
         int update = tb2Dao.update(tb2);
+
+        if (update <= 0) {
+            return null;
+        }
+
         return queryById(tb2.getId());
     }
 
@@ -82,6 +87,7 @@ public class Tb2ServiceImpl implements Tb2Service {
 
     /**
      * 空值查询
+     *
      * @return 返回一个 NULL 的 List 集合
      */
     @Override

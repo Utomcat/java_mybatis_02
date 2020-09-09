@@ -45,7 +45,7 @@ public class ListOperate {
     }
 
 
-    //TODO 遍历List的四种方式的效率：
+    //TODO 遍历List的几种方式的效率：
     // 一、使用普通的for循环
     // 二、使用iterable迭代器
     // 三、使用foreach实现循环

@@ -46,13 +46,12 @@ public class StringOperate {
         //将字符串分割 每一个字符单独作为一个字符串放进字符串数组中
         String[] mySirs = str.split("");
         //循环此字符串数组，将其对应的每个字符放进Map的key中，然后每个字符的数量统计放进Map的value中
-        for (int i = 0; i < mySirs.length; i++) {
+        for (String mySir : mySirs) {
             int totalNum = 1;
-            String currentStr = mySirs[i];
-            if (count.containsKey(currentStr)) {
-                totalNum = count.get(currentStr) + 1;
+            if (count.containsKey(mySir)) {
+                totalNum = count.get(mySir) + 1;
             }
-            count.put(currentStr, totalNum);
+            count.put(mySir, totalNum);
         }
 
         return count;

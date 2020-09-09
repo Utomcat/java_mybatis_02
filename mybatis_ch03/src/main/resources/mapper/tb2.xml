@@ -70,6 +70,9 @@
             <if test="score != null and score != ''">
                 score = #{score},
             </if>
+            <if test="testFiled != null and testFiled != ''">
+                test_filed = #{testFiled},
+            </if>
         </set>
         where id = #{id}
     </update>
