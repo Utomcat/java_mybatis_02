@@ -12,16 +12,20 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
-        select
-          id, name, course, score
+        select id,
+               name,
+               course,
+               score
         from test.tb2
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
-        select
-          id, name, course, score
+        select id,
+               name,
+               course,
+               score
         from test.tb2
         limit #{offset}, #{limit}
     </select>
@@ -29,7 +33,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, name, course, score
+        id, name, course, score
         from test.tb2
         <where>
             <if test="id != null and id != ''">
@@ -47,9 +51,47 @@
         </where>
     </select>
 
-    <select id="queryNullFromDual" resultType="java.lang.Object">
-        select null from dual
+    <select id="queryAll23" parameterType="com.ranyk.mybatis.entity.Tb23" resultType="com.ranyk.mybatis.entity.Tb2">
+        select
+        id, name, course, score
+        from test.tb2
+        <where>
+            name = #{ name }
+        </where>
     </select>
+
+    <select id="queryNullFromDual" resultType="java.lang.Object">
+        select null
+        from dual
+    </select>
+
+    <!--通过姓名模糊查询-->
+    <select id="selectLikeByName" resultType="com.ranyk.mybatis.entity.Tb2">
+        <!-- select * from tb2 where name like '%${name}%' -->
+        <!-- select * from tb2 where name like concat('%',concat(#{name},'%')) -->
+        select * from tb2 where name like '%' | #{name} | '%'
+    </select>
+
+    <select id="selectLikeByName2" resultType="com.ranyk.mybatis.entity.Tb2">
+        select *
+        from tb2
+        <where>
+            <if test="name != null and name == '1'">
+                name = '张三'
+            </if>
+        </where>
+    </select>
+
+    <select id="selectLikeByName3" resultType="com.ranyk.mybatis.entity.Tb2">
+        select *
+        from tb2
+        <where>
+            <if test='name != null and name == "a"'>
+                name = '张三'
+            </if>
+        </where>
+    </select>
+
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -79,7 +121,10 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from test.tb2 where id = #{id}
+        delete
+        from test.tb2
+        where id = #{id}
     </delete>
+
 
 </mapper>

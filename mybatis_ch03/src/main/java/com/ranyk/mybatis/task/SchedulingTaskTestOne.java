@@ -4,7 +4,6 @@ import com.ranyk.mybatis.entity.Tb2;
 import com.ranyk.mybatis.service.Tb2Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,7 +28,7 @@ public class SchedulingTaskTestOne {
     /**
      * 定时任务一: 每20秒执行一次想 tb2 表中新增数据, 新增的次数为 stInt 次
      */
-    @Scheduled(cron = "*/20 * * * * ?")
+    //@Scheduled(cron = "*/20 * * * * ?")
     public void insertIntoTb2Task(){
 
         Tb2 tb2 = new Tb2();

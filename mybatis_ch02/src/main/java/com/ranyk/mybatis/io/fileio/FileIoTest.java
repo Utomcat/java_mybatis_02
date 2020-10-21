@@ -8,7 +8,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -26,7 +25,7 @@ import java.util.zip.ZipInputStream;
 public class FileIoTest {
 
     public static void main(String[] args) {
-        FileIoTest fileIoTest = new FileIoTest();
+       /* FileIoTest fileIoTest = new FileIoTest();
         List<String> params = new ArrayList<>();
         params.add("1710027");
         System.out.println(JSON.toJSONString(params));
@@ -36,8 +35,10 @@ public class FileIoTest {
             log.info(data);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
+        System.out.println(File.separator);
+        System.out.println(File.pathSeparator);
 
     }
 

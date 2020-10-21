@@ -1,6 +1,7 @@
 package com.ranyk.mybatis;
 
 import com.ranyk.mybatis.entity.Tb2;
+import com.ranyk.mybatis.entity.Tb23;
 import com.ranyk.mybatis.service.Tb2Service;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -131,6 +132,100 @@ public class MybatisCh03ApplicationTests {
             Tb2 update = tbService.update(tb2);
             System.out.println("update = " + update);
         }
+    }
+
+
+    @Test
+    public void method5() {
+        List<Tb2> tb2s = tbService.queryAllByLimit(0, 0);
+        //List<Tb2> tb2s = null;
+        for (Tb2 tb2 : tb2s) {
+            tb2.setId(null);
+            tbService.insert(tb2);
+        }
+    }
+
+    @Test
+    public void method6() {
+        Tb2 tb2 = new Tb2();
+        tb2.setCourse("化学");
+        List<Tb2> tb2s = tbService.queryAllByTb2(tb2);
+
+        for (Tb2 tb : tb2s) {
+            tb.setName("aaaa");
+            tb.setScore("50");
+            tbService.insert(tb);
+        }
+
+    }
+
+
+    @Test
+    @Transactional(rollbackFor = Exception.class)
+    public void method7() {
+
+        try {
+            List<Tb2> tb2s = tbService.queryAllByLimit(0, 10);
+
+
+            int a = 0;
+
+            for (int i = 0; i < tb2s.size(); i++) {
+                if (i == 3) {
+                    Tb2 tb2 = tb2s.get(i);
+                    tb2.setName("修改第四个位置的数据1111");
+                    tbService.update(tb2);
+                }
+
+            }
+
+
+            if (a <= 0) {
+                throw new Exception("测试异常");
+            }
+
+        } catch (Exception e) {
+            System.out.println("错误信息: " + e.getMessage() + ", 错误行: " + e.getStackTrace()[0].getLineNumber());
+        }
+
+
+    }
+
+
+    /**
+     * 验证mybatis模糊查询中<br/>
+     * where abc like '%${abc}%' 当 ${abc} 为 null 时其执行SQL 为 where abc like '%%' 即 全表查询;<br/>
+     * where abc like '%#{abc}%' 时 执行SQL为 where abc like '%?%' 其中 ? 代表传入的参数,但是该SQL不能执行,会抛出如下异常<br/>
+     *
+     * TypeException: Could not set parameters for mapping:<br/>
+     * ParameterMapping{property='name', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}.<br/>
+     * Cause: org.apache.ibatis.type.TypeException:<br/>
+     * Error setting non null for parameter #1 with JdbcType null .<br/>
+     * Try setting a different JdbcType for this parameter or a different configuration property.<br/>
+     * Cause: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null .<br/>
+     * Try setting a different JdbcType for this parameter or a different configuration property.<br/>
+     * Cause: java.sql.SQLException: Parameter index out of range (1 > number of parameters, which is 0).<br/>
+     *
+     *
+     *
+     */
+    @Test
+    public void method8() {
+
+        Tb2 tb2 = new Tb2();
+        List<Tb2> tb2s = tbService.fuzzyQueryByName(tb2);
+
+        for (Tb2 tb : tb2s) {
+            System.out.println(tb);
+        }
+
+    }
+
+
+    @Test
+    public void method9(){
+        Tb23 tb2 = new Tb23();
+        tbService.queryAllByTb23(tb2);
     }
 
 }

@@ -2,6 +2,7 @@ package com.ranyk.mybatis.service.impl;
 
 import com.ranyk.mybatis.dao.Tb2Dao;
 import com.ranyk.mybatis.entity.Tb2;
+import com.ranyk.mybatis.entity.Tb23;
 import com.ranyk.mybatis.service.Tb2Service;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,21 @@ public class Tb2ServiceImpl implements Tb2Service {
     @Override
     public List<Tb2> queryAllByLimit(int offset, int limit) {
         return tb2Dao.queryAllByLimit(offset, limit);
+    }
+
+    /**
+     * 查询满足某项条件的List 集合
+     * @param tb2 条件封装对象
+     * @return 返回查询结果 List 集合
+     */
+    @Override
+    public List<Tb2> queryAllByTb2(Tb2 tb2) {
+        return tb2Dao.queryAll(tb2);
+    }
+
+    @Override
+    public List<Tb2> queryAllByTb23(Tb23 tb23) {
+        return tb2Dao.queryAll23(tb23);
     }
 
     /**
@@ -94,4 +110,20 @@ public class Tb2ServiceImpl implements Tb2Service {
     public List<Object> queryNullFromDual() {
         return tb2Dao.queryNullFromDual();
     }
+
+    /**
+     * 通过姓名模糊查询
+     *
+     * @param tb2 需要查询的参数对象
+     * @return 查询结果的 List 集合
+     */
+    @Override
+    public List<Tb2> fuzzyQueryByName(Tb2 tb2) {
+        /*return tb2Dao.selectLikeByName(tb2.getName());*/
+
+        return tb2Dao.selectLikeByName3((int)'a');
+    }
+
+
+
 }
