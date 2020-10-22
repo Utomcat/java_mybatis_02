@@ -1,5 +1,7 @@
 package com.ranyk.mybatis.util;
 
+import org.springframework.util.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +59,31 @@ public class StringOperate {
         return count;
     }
 
+    /**
+     * 判断字符串是否为空
+     *
+     * @param str 需要判定的字符串
+     * @return 返回判定结构
+     */
+    public static Boolean judgeStringIsNull(String str) {
+        return StringUtils.hasText(str);
+    }
 
 
+    /**
+     * 字符串替换
+     *
+     * @param originalStr 原始字符串
+     * @param targetStr 需要替换的目标字符串
+     * @param replaceStr 替换字符串
+     * @return 返回替换结果
+     * @throws Exception 抛出异常: 不存在需要替换的字符串异常
+     */
+    public static String replaceStr(String originalStr, String targetStr, String replaceStr) throws Exception{
+        if (!originalStr.contains(targetStr)){
+            throw new Exception("原始字符串不包含需要更换的子字符串！");
+        }
+
+        return originalStr.replace(targetStr,replaceStr);
+    }
 }

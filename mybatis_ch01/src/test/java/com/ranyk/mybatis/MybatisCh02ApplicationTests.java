@@ -25,25 +25,25 @@ public class MybatisCh02ApplicationTests {
     Object a; //null
 
     @Test
-    void testMethod0(){
+    void testMethod0() {
         String str = "adsaffasdfskdjkfdjklsjadjflsdjflksajdkfjlsdakjflsajdfjsdfldksjflkjasldf";
         Character b = 'a';
         log.info("在字符串 " + str + " 中出现字符 " + b + " 的次数为：" + StringOperate.statisticsStr1(str, b));
     }
 
     @Test
-    void testMethod1(){
+    void testMethod1() {
         String str = "adsaffasdfskdjkfdjklsjadjflsdjflksajdkfjlsdakjflsajdfjsdfldksjflkjasldf";
         Map<String, Integer> map = StringOperate.statisticsStr2(str);
         Set<Map.Entry<String, Integer>> entries = map.entrySet();
         for (Map.Entry<String, Integer> entry : entries) {
-            log.info( "在字符串 " + str + "中, 字符: " + entry.getKey() + " , 出现了: " + entry.getValue() + "次！");
+            log.info("在字符串 " + str + "中, 字符: " + entry.getKey() + " , 出现了: " + entry.getValue() + "次！");
         }
     }
 
 
     @Test
-    void testMethod2(){
+    void testMethod2() {
         List<String> list = null;
         list.forEach(s -> {
 
@@ -59,7 +59,7 @@ public class MybatisCh02ApplicationTests {
      * 引用数据类型默认值为 null <br/>
      */
     @Test
-    void testMethod3(){
+    void testMethod3() {
     /*    int a = 'a';
         System.out.println(cha);
         System.out.println((int)cha);
@@ -77,5 +77,28 @@ public class MybatisCh02ApplicationTests {
     }
 
 
+    @Test
+    void testMethod4() {
+        String str = "null";
+        System.out.println("字符串控制判断 ===> " + StringOperate.judgeStringIsNull(str));
+    }
+
+    @Test
+    void testMethod5() {
+
+        try {
+
+            String s = StringOperate.replaceStr("fastdfs://group1/M00/00/00/CgBkBV9q7POAA13RAADlt9RrGrs689.dwg", "fastdfs://", "http://10.8.12.11:81/");
+
+            if (!s.startsWith("http://")){
+                throw new Exception("地址转换失败！");
+            }
+
+            System.out.println(s);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
 }
