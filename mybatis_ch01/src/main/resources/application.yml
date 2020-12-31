@@ -7,6 +7,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 server:
   port: 9999
+  #设置 Tomcat Web 容器中,最大线程池容量
+  tomcat:
+    threads:
+      max: 1
 # mybatis配置
 mybatis:
     type-aliases-package: com.ranyk.*.entity
