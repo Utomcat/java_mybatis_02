@@ -1,10 +1,9 @@
 package com.ranyk.mybatis.mianshi;
 
 /**
- * 2 * @Author: zhouqy
- * 3 * @Description:
- * 4 * @Date: 2020/6/17 18:30
- * 5
+ * @author zhouqy
+ * @description
+ * @date  2020/6/17 18:30
  */
 public class Calculate {
 
@@ -17,11 +16,10 @@ public class Calculate {
         final int[] arr1 = new int[10];
         for (final String s : split) {
             System.out.println(s);
-            final int index = Integer.valueOf(s);
+            final int index = Integer.parseInt(s);
             arr[index]++;
             arr1[index]++;
         }
-        // int[] clone = arr.clone();
         System.out.println(calculateMax(arr));
         System.out.println(calculateMin(arr1));
 
@@ -29,12 +27,12 @@ public class Calculate {
 
     public static String calculateMax(final int[] arr) {
 
-        int h1 = 0;
-        int h2 = 0;
-        int m1 = 0;
-        int m2 = 0;
-        int s1 = 0;
-        int s2 = 0;
+        int h1;
+        int h2;
+        int m1;
+        int m2;
+        int s1;
+        int s2;
         // boolean flag = false;
         // 获取h1
         h1 = getMaxResult(arr, 2);
@@ -45,7 +43,7 @@ public class Calculate {
         s2 = getMaxResult(arr, 9);
 
         return wrapper(h1 * 10 + h2) + ":" + wrapper(m1 * 10 + m2) + ":" + wrapper(s1 * 10 + s2);
-    };
+    }
 
     public static String wrapper(final int i) {
         return i >= 10 ? i + "" : "0" + i;
@@ -53,12 +51,12 @@ public class Calculate {
 
     public static String calculateMin(final int[] arr) {
 
-        int h1 = 0;
-        int h2 = 0;
-        int m1 = 0;
-        int m2 = 0;
-        int s1 = 0;
-        int s2 = 0;
+        int h1;
+        int h2;
+        int m1;
+        int m2;
+        int s1;
+        int s2;
         // boolean flag = false;
         // 获取h1
         h1 = getMinResult(arr, 2);
@@ -69,7 +67,7 @@ public class Calculate {
         s2 = getMinResult(arr, 9);
 
         return wrapper(h1 * 10 + h2) + ":" + wrapper(m1 * 10 + m2) + ":" + wrapper(s1 * 10 + s2);
-    };
+    }
 
     public static int getMaxResult(final int[] arr, final int max) {
         int result = 0;
