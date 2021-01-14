@@ -1,5 +1,7 @@
 package com.ranyk.mybatis.inherit;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * ClassName:ExtendBaseClassTest
  * Description:继承的子类
@@ -8,15 +10,15 @@ package com.ranyk.mybatis.inherit;
  * @date 2020-07-28 10:20
  * Version: V1.0
  */
+@Slf4j
 public class ExtendBaseClassTest extends BaseClass {
 
     public ExtendBaseClassTest(String str) {
-        super(str);
+        super();
     }
 
     public static void main(String[] args) {
         ExtendBaseClassTest extendBaseClassTest = new ExtendBaseClassTest("aaaa");
-        BaseClass base = extendBaseClassTest.getBase();
-        System.out.println(extendBaseClassTest.getSuccess());
+        log.info(extendBaseClassTest.getSuccess());
     }
 }
