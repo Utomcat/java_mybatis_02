@@ -10,6 +10,9 @@ package com.ranyk.mybatis.enum_test;
  */
 public enum  Singleton {
 
+    /**
+     * instance 常量
+     */
     INSTANCE;
 
 
