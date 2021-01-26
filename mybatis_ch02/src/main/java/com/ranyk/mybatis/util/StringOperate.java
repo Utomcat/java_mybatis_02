@@ -73,7 +73,7 @@ public class StringOperate {
      * @return 返回判定结构
      */
     public static Boolean judgeStringIsNull(String str) {
-        return StringUtils.hasText(str);
+        return StringUtils.isEmpty(str) && !StringUtils.hasLength(str) && !StringUtils.hasText(str);
     }
 
 

@@ -1,9 +1,9 @@
 /**
- * ClassName:package-info
- * Description:Java 并发的学习
+ * ClassName:package-info<br/>
+ * Description:Java 并发的学习<br/>
  *
- * @author ranyi
- * @date 2020-06-04 17:15
+ * author ranyi<br/>
+ * date 2020-06-04 17:15<br/>
  * Version: V1.0
  */
 package com.ranyk.mybatis.concurrent;
