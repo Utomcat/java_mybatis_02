@@ -26,11 +26,12 @@ public class CallableThreadTest implements Callable<Integer> {
      */
     @Override
     public Integer call() throws Exception {
-        int i = 0;
-        for (; i < 100; i++) {
+        int result = 0;
+        for (int i = 0; i < 100; i++) {
             log.info("{} ==> {}",Thread.currentThread().getName(),i);
+            result = i;
         }
-        return i;
+        return result;
     }
 
     @Test
@@ -40,7 +41,7 @@ public class CallableThreadTest implements Callable<Integer> {
         for (int i = 0; i < 100; i++) {
             log.info("{} ==> {}",Thread.currentThread().getName(),i);
             if (i==20){
-                new Thread(ft,"有返回值的线程").start();
+                new Thread(ft,"有返回值的线程"+i).start();
             }
         }
         try {
