@@ -106,4 +106,18 @@ class MybatisCh01ApplicationTests {
         System.out.println(++i);
         System.out.println(i);
     }
+
+
+    /**
+     * & 和 && 的差异验证<br/>
+     * 两者都可表示与操作,但是 & 常进行 位运算; && 常进行 逻辑与运算;<br/>
+     * 当两者 前后均为 布尔值 时,两者可互换,且都支持 一假则假;<br/>
+     * 当为数字是 & 代表位运算; && 不支持该种运算;
+     */
+    @Test
+    void test05(){
+        log.info("& 的值 {}",1&2);
+        log.info("& 的值 {}",1!=1&2!=2);
+        log.info("&& 的值 {}",1==1&&2==2);
+    }
 }

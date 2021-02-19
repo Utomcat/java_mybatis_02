@@ -17,7 +17,7 @@ import java.util.stream.LongStream;
  * @author ranyi
  */
 @Log4j2
-@Component
+@Component(value = "main01Test")
 public class Main01Test {
 
     public static final int THREAD_COUNT = 10;

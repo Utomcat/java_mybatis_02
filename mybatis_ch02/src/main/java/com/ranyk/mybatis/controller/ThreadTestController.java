@@ -26,7 +26,7 @@ import java.util.stream.IntStream;
 public class ThreadTestController {
 
     private ThreadLocal<Integer> currentUser = ThreadLocal.withInitial(() -> null);
-    @Autowired
+    @Autowired(required = false)
     private Main01Test main01Test;
 
     /**

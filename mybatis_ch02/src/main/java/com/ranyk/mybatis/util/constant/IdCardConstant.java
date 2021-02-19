@@ -20,7 +20,7 @@ public enum IdCardConstant implements ConstantBase<String> {
     /**
      * 18位身份证号长度
      */
-    EIGHTEEN_ID_LENGTH(" 15位身份证号长度", 0, 0, 18),
+    EIGHTEEN_ID_LENGTH(" 18位身份证号长度", 0, 0, 18),
     /**
      * 15位身份证号正则表达式
      */
