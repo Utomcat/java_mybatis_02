@@ -1,10 +1,14 @@
 package com.ranyk.mybatis;
 
+import com.ranyk.mybatis.util.ObjectOperate;
 import com.ranyk.mybatis.util.StringOperate;
+import com.ranyk.mybatis.util.vo.PersonInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -120,4 +124,41 @@ class MybatisCh01ApplicationTests {
         log.info("& 的值 {}",1!=1&2!=2);
         log.info("&& 的值 {}",1==1&&2==2);
     }
+
+    /**
+     * Map 中value 中存放的是 boolean 值时,获取值时强转类型测试
+     */
+    @Test
+    void test06(){
+        Map<String,Object> map = new HashMap<>(3);
+        map.put("a",false);
+        map.put("b",true);
+        map.put("c",null);
+        if (!(boolean)map.get("a")){
+            log.info("false 能实现转换");
+        }
+        if ((boolean)map.get("b")){
+            log.info("true 能实现转换");
+        }
+        if (!(boolean)map.get("c")){
+            log.info("null 能实现转换");
+        }
+    }
+
+    @Test
+    void test07(){
+        Date date = null;
+        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date)?"是空":"不是空");
+        date = new Date();
+        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date)?"是空":"不是空");
+    }
+
+    @Test
+    void test08(){
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setAge(25);
+        log.info("无参构造函数构造的对象 {} ", ObjectOperate.objectIsEmpty(personInfo,true)?"是空":"不是空");
+        log.info("{}",personInfo);
+    }
+
 }
