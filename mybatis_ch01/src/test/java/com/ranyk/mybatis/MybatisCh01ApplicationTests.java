@@ -1,5 +1,6 @@
 package com.ranyk.mybatis;
 
+import com.ranyk.mybatis.excel.CreateExcelUseJxl;
 import com.ranyk.mybatis.util.ObjectOperate;
 import com.ranyk.mybatis.util.StringOperate;
 import com.ranyk.mybatis.util.vo.PersonInfo;
@@ -7,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -102,7 +106,7 @@ class MybatisCh01ApplicationTests {
      * 验证结果: ++i 是 先对 i 进行加一操作,然后在对其进行赋值,即 (i = i+1; ); i++ 则是先进行赋值,然后在对其进行加一操作,即 (i = i; i+1;)
      */
     @Test
-    void test04(){
+    void test04() {
         int i = 0;
         System.out.println(i);
         System.out.println(i++);
@@ -119,46 +123,71 @@ class MybatisCh01ApplicationTests {
      * 当为数字是 & 代表位运算; && 不支持该种运算;
      */
     @Test
-    void test05(){
-        log.info("& 的值 {}",1&2);
-        log.info("& 的值 {}",1!=1&2!=2);
-        log.info("&& 的值 {}",1==1&&2==2);
+    void test05() {
+        log.info("& 的值 {}", 1 & 2);
+        log.info("& 的值 {}", 1 != 1 & 2 != 2);
+        log.info("&& 的值 {}", 1 == 1 && 2 == 2);
     }
 
     /**
      * Map 中value 中存放的是 boolean 值时,获取值时强转类型测试
      */
     @Test
-    void test06(){
-        Map<String,Object> map = new HashMap<>(3);
-        map.put("a",false);
-        map.put("b",true);
-        map.put("c",null);
-        if (!(boolean)map.get("a")){
+    void test06() {
+        Map<String, Object> map = new HashMap<>(3);
+        map.put("a", false);
+        map.put("b", true);
+        map.put("c", null);
+        if (!(boolean) map.get("a")) {
             log.info("false 能实现转换");
         }
-        if ((boolean)map.get("b")){
+        if ((boolean) map.get("b")) {
             log.info("true 能实现转换");
         }
-        if (!(boolean)map.get("c")){
-            log.info("null 能实现转换");
+        try {
+            if (!(boolean) map.get("c")) {
+                log.info("null 能实现转换");
+            }
+        } catch (Exception e) {
+            log.error("{}", e.getMessage());
         }
     }
 
+
+    /**
+     * Date 类型判空测试
+     */
     @Test
-    void test07(){
+    void test07() {
         Date date = null;
-        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date)?"是空":"不是空");
+        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date) ? "是空" : "不是空");
         date = new Date();
-        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date)?"是空":"不是空");
+        log.info("当前Date类型的值 {} ", ObjectOperate.objectIsEmpty(date) ? "是空" : "不是空");
     }
 
+
+    /**
+     * 对象实例的属性全空判断测试
+     */
     @Test
-    void test08(){
+    void test08() {
         PersonInfo personInfo = new PersonInfo();
         personInfo.setAge(25);
-        log.info("无参构造函数构造的对象 {} ", ObjectOperate.objectIsEmpty(personInfo,true)?"是空":"不是空");
-        log.info("{}",personInfo);
+        log.info("无参构造函数构造的对象 {} ", ObjectOperate.objectIsEmpty(personInfo, true) ? "是空" : "不是空");
+        log.info("{}", personInfo);
     }
 
+
+    @Test
+    void test09() {
+        try {
+            //1. 创建一个output 输出对象
+            File file = new File("A.xls");
+            OutputStream outputStream = new FileOutputStream(file);
+            //2. 创建Excel
+            CreateExcelUseJxl.createExcel(outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
