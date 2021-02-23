@@ -1,5 +1,6 @@
 package com.ranyk.mybatis;
 
+import com.ranyk.mybatis.excel.CreateExcelUseEasyExcel;
 import com.ranyk.mybatis.excel.CreateExcelUseJxl;
 import com.ranyk.mybatis.util.ObjectOperate;
 import com.ranyk.mybatis.util.StringOperate;
@@ -178,6 +179,9 @@ class MybatisCh01ApplicationTests {
     }
 
 
+    /**
+     * 测试使用 jxl 方式操作Excel
+     */
     @Test
     void test09() {
         try {
@@ -189,5 +193,17 @@ class MybatisCh01ApplicationTests {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 测试使用 easyExcel 方式操作Excel
+     */
+    @Test
+    void test10() {
+        log.info("开始生成Excel");
+        CreateExcelUseEasyExcel easyExcel = new CreateExcelUseEasyExcel();
+        easyExcel.complexHeadWrite();
+        log.info("Excel生成完成");
     }
 }
