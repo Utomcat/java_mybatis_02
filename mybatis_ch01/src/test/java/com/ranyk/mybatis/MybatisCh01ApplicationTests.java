@@ -206,4 +206,15 @@ class MybatisCh01ApplicationTests {
         easyExcel.complexHeadWrite();
         log.info("Excel生成完成");
     }
+
+
+    /**
+     * 测试 Integer 的对象为 null 时, 直接用 == 判断是否等于 0,结果会抛出 空指针异常;
+     * 测试 Integer 的对象为 new Integer("") 或 new Integer(null)时,会抛出 数字格式不正确
+     */
+    @Test
+    void test11(){
+        Integer age = new Integer("");
+        log.info("Integer 数据为空是其值和0是否相等? ==> {} ",age==0?"相等":"不相等");
+    }
 }
