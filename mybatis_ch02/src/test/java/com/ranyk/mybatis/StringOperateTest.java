@@ -6,8 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -73,9 +77,76 @@ class StringOperateTest {
 
 
     @Test
-    void test05(){
-        String dateTime = MessageFormat.format("{0,date,yyyy-MM-dd HH:mm:ss:ms}" , new Object[]{new Date(System.currentTimeMillis())});
-        log.info("格式化时间 {}",dateTime);
+    void test05() {
+        String dateTime = MessageFormat.format("{0,date,yyyy-MM-dd HH:mm:ss:ms}", new Object[]{new Date(System.currentTimeMillis())});
+        log.info("格式化时间 {}", dateTime);
+    }
+
+
+    @Test
+    void test06() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+        Date d = new Date();
+        String str = sdf.format(d);
+        log.info("格式化时间字符串: {}", str);
+
+        SimpleDateFormat sdf1 =new SimpleDateFormat("yyyy-MM-dd" );
+        Date d1= new Date();
+        String str1 = sdf1.format(d1);
+        log.info("格式化时间字符串: {}", str1);
+    }
+
+
+    @Test
+    void test07(){
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" );
+        String str = "2016/1/5 12:12:12";
+        try {
+            Date d = sdf.parse(str);
+            System.out.printf("字符串 %s 通过格式  yyyy/MM/dd HH:mm:ss %n转换为日期对象: %s %n",str,d.toString());
+            log.info("字符串 {} 通过格式  yyyy/MM/dd HH:mm:ss %n转换为日期对象: {}",str,d.toString());
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    void test08(){
+        Calendar instance = Calendar.getInstance();
+        Date time = instance.getTime();
+        log.info("{}",time);
+    }
+
+
+    @Test
+    void Test09(){
+        Date date = new Date(0);
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(date);
+        log.info("{}",instance.getTime());
+    }
+
+    @Test
+    void test10(){
+        Date date = new Date();
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(date);
+        log.info("操作日历对象之前的时间为 {}",instance.getTime());
+        instance.add(Calendar.DAY_OF_MONTH,-3);
+        log.info("操作日历对象...");
+        log.info("操作日历对象之后的时间为 {}",instance.getTime());
+
+    }
+
+
+    @Test
+    void test11(){
+        String dateStr = "20210304";
+        DateTimeFormatter basicIsoDate = DateTimeFormatter.BASIC_ISO_DATE;
+        LocalDate parse = LocalDate.parse(dateStr, basicIsoDate);
+        log.info("{}",parse);
     }
 
 
